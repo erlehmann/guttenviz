@@ -36,6 +36,17 @@ body > h1 {
     font-size: 40px;
 }
 
+a#github,
+a#github > img {
+    border: none;
+    display: block;
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 9001;
+}
+
 hr {
     border: none;
     border-left: 1px solid black;
