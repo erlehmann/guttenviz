@@ -14,9 +14,6 @@ function dom_init() {
             if(req.status == 200) {
                 var json = CSVToArray(req.responseText);
 
-                console.log(json[0]);
-                console.log(json[1]);
-
                 json.splice(0, 1);  // remove first CSV element (headings)
                 draw_barcode(json);
             } else {
@@ -49,7 +46,6 @@ function draw_barcode(json) {
             pagenumber_current = parseInt(json[i][0], 10);
             if (page == pagenumber_current) {
                 // plagiarism fragment
-                console.log(page);
                 fragments++;
 
                 ctx.strokeStyle = '#000000';
