@@ -92,6 +92,7 @@ function draw_barcode(json) {
 
         // break on final page
         if (page == pages) {
+            $('#fragment-count')[0].textContent = fragments;
             break;
         }
     }
