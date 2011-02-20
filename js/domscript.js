@@ -18,8 +18,7 @@ function dom_init() {
                 console.log(json[1]);
 
                 json.splice(0, 1);  // remove first CSV element (headings)
-                json = bar_generate(json);
-                bar_chart(json);
+                draw_barcode(json);
             } else {
             alert('Could not reach Guttenviz API at <' + url + '>.');
             }
@@ -28,69 +27,80 @@ function dom_init() {
     req.send(null);
 }
 
-function bar_chart(json) {
-    var barChart = new $jit.BarChart({
-        injectInto: 'infovis',
-        orientation: 'horizontal',
-        barsOffset: 1,
-        labelOffset: 5,
-        type: 'stacked',
-        showLabels:true,
-        //label styles
-        Label: {
-            type: 'Native', //Native or HTML
-            size: 12,
-            family: 'sans-serif',
-            color: 'white'
-        },
-        //tooltip options
-        Tips: {
-            enable: true,
-            onShow: function(tip, elem) {
-                tip.innerHTML = "<b>" + elem.name + "</b>: " + elem.value;
+function draw_barcode(json) {
+    var pages = 475;  // number of pages to be checked
+    var height = 100  // height of barcode
+
+    var fragments = 0;
+
+    var ctx =  $('#barcode')[0].getContext('2d');
+
+    // remove loading indicator
+    $('#barcode-container')[0].removeChild($('#barcode-container > span')[0]);
+
+    // background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, pages, height);
+
+    var page = 0;
+    while (++page) {
+        // check every page
+        for (var i=0, len=json.length; i<len; ++i) {
+            pagenumber_current = parseInt(json[i][0], 10);
+            if (page == pagenumber_current) {
+                // plagiarism fragment
+                console.log(page);
+                fragments++;
+
+                ctx.strokeStyle = '#000000';
+                ctx.moveTo(page, 0);
+                ctx.lineTo(page, height);
+                ctx.stroke();
+
+                var rowNode = document.createElement('tr');
+
+                var pageNode = document.createElement('td');
+                var guttenNode = document.createElement('td');
+                var originalNode = document.createElement('td');
+                var sourceNode = document.createElement('td');
+
+                var urlNode = document.createElement('td');
+
+                pageNode.textContent = pagenumber_current;
+                guttenNode.textContent = fix_text(json[i][2]);
+                originalNode.textContent = fix_text(json[i][5]);
+                sourceNode.textContent = fix_text(json[i][8]);
+
+                if (json[i][9] != '') {
+                    var aNode = document.createElement('a');
+
+                    aNode.href = fix_text(json[i][9]);
+                    aNode.textContent = aNode.href;
+
+                    urlNode.appendChild(aNode);
+                }
+
+                rowNode.appendChild(pageNode);
+                rowNode.appendChild(guttenNode);
+                rowNode.appendChild(originalNode);
+                rowNode.appendChild(sourceNode);
+
+                rowNode.appendChild(urlNode);
+
+                $('#fragments')[0].appendChild(rowNode)
             }
         }
-    });
 
-    barChart.loadJSON(json);
-
-    var legend = barChart.getLegend();
-}
-
-function bar_generate(json) {
-    var newjson = {
-        'label': [],
-        'values': [
-            {
-                'values': []
-            }
-        ]
-    };
-
-    for (var i=0, len=json.length; i<len; ++i) {
-        console.log(json[i]);
-
-        var pagenumber_current = json[i][0];
-
-        var pagenumber_previous = newjson['label'][i-1];
-        if (typeof pagenumber_previous == typeof undefined) {
-            pagenumber_previous = 0;
-        }
-
-        if (pagenumber_current == pagenumber_previous) {
+        // break on final page
+        if (page == pages) {
             break;
         }
-
-        clean_block = pagenumber_current - pagenumber_previous - 1
-        if (clean_block > 0) {
-            newjson['label'].push('Seiten in plagiatfreiem Block');
-            newjson['values'][0]['values'].push(clean_block);
-        };
-
-        newjson['label'].push(pagenumber_current);
-        newjson['values'][0]['values'].push(1);
     }
+}
 
-    console.log(newjson);
-    return newjson;
+function fix_text(text) {
+    text = text.replace(/&#13;&#10;/g, ' ');
+    text = text.replace(/&#039;/g, "'");
+    text = text.replace(/&quot;/g, '"');
+    return text;
 }

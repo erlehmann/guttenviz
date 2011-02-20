@@ -7,3 +7,78 @@
 .js div { } /* apply only on JavaScript enabled browsers */
 .ie7 div { } /* apply only on Internet Explorer 7 and below */
 .ie6 div { } /* apply only on Internet Explorer 6 and below */
+
+@font-face {
+    font-family: "Mota Pixel";
+    src: url(../fonts/MotaPixelRegular.ttf);
+}
+
+@font-face {
+    font-family: "Mota Pixel";
+    font-weight: bold;
+    src: url(../fonts/MotaPixelBold.ttf);
+}
+
+body {
+    background-color: #eeeeec;
+    font-family: "Mota Pixel";
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 20px;
+    text-align: center;
+}
+
+body > * {
+    margin: 20px auto;
+}
+
+body > h1 {
+    font-size: 40px;
+}
+
+hr {
+    border: none;
+    border-left: 1px solid black;
+    height: 20px;
+    margin: -20px auto;
+    width: 0px;
+}
+
+table > thead > tr > td {
+    text-align: center;
+}
+
+table > * > tr > td {
+    padding: 10px;
+}
+
+table > * > tr > td > a {
+    display: inline-block;
+    height: 20px;
+    max-width: 200px;
+}
+
+table,
+#barcode-container {
+    background-color: white;
+    border: 1px solid black;
+    position: relative;
+}
+
+#barcode-container {
+    width: 475px;
+}
+
+#barcode-container > span {
+    font-size: 40px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    top: 30px;
+    width: 100%;
+}
+
+#barcode-container > canvas,
+#barcode-container > img {
+    display: block;
+}
