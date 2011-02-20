@@ -61,6 +61,7 @@ table > thead > tr > td {
 
 table > * > tr > td {
     padding: 10px;
+    min-width: 40px;
 }
 
 table > * > tr > td > a {

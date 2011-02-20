@@ -60,6 +60,7 @@ function draw_barcode(json) {
                 var rowNode = document.createElement('tr');
 
                 var pageNode = document.createElement('td');
+                var pageRowsNode = document.createElement('td');
                 var guttenNode = document.createElement('td');
                 var originalNode = document.createElement('td');
                 var sourceNode = document.createElement('td');
@@ -67,6 +68,7 @@ function draw_barcode(json) {
                 var urlNode = document.createElement('td');
 
                 pageNode.textContent = pagenumber_current;
+                pageRowsNode.textContent = fix_text(json[i][1]);
                 guttenNode.textContent = fix_text(json[i][2]);
                 originalNode.textContent = fix_text(json[i][5]);
                 sourceNode.textContent = fix_text(json[i][8]);
@@ -81,6 +83,7 @@ function draw_barcode(json) {
                 }
 
                 rowNode.appendChild(pageNode);
+                rowNode.appendChild(pageRowsNode);
                 rowNode.appendChild(guttenNode);
                 rowNode.appendChild(originalNode);
                 rowNode.appendChild(sourceNode);
