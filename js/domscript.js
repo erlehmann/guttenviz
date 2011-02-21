@@ -74,7 +74,7 @@ function draw_barcode(json) {
                 n2 = parseInt(rowsList[1], 10);
                 rows_current = n2 - n1 + 1;
                 if (isNaN(rows_current)) {
-                    $('#errors')[0].textContent += 'Falsche Zeilenangabe zu Seite ' + pagenumber_current + ': ' + rowsText + '\n';
+                    $('#errors')[0].textContent += 'Nicht auswertbare Zeilenangabe zu Seite ' + pagenumber_current + ': „' + rowsText + '“\n';
                 } else {
                     rows += rows_current;
                 };
