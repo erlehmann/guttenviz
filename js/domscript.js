@@ -72,7 +72,6 @@ function draw_barcode(json) {
                 var rowsList = rowsText.split('-');
                 n1 = parseInt(rowsList[0], 10);
                 n2 = parseInt(rowsList[1], 10);
-                console.log(n1, n2);
                 rows_current = n2 - n1 + 1;
                 if (isNaN(rows_current)) {
                     $('#errors')[0].textContent += 'Falsche Zeilenangabe zu Seite ' + pagenumber_current + ': ' + rowsText + '\n';
