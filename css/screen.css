@@ -103,3 +103,7 @@ table,
 #barcode-container > img {
     display: block;
 }
+
+#errors {
+    white-space: pre;
+}
