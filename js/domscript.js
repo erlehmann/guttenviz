@@ -29,6 +29,7 @@ function draw_barcode(json) {
     var height = 100  // height of barcode
 
     var fragments = 0;
+    var rows = 0;
 
     var ctx =  $('#barcode')[0].getContext('2d');
 
@@ -64,7 +65,20 @@ function draw_barcode(json) {
                 var urlNode = document.createElement('td');
 
                 pageNode.textContent = pagenumber_current;
-                pageRowsNode.textContent = fix_text(json[i][1]);
+
+                var rowsText = fix_text(json[i][1])
+                pageRowsNode.textContent = rowsText;
+
+                var rowsList = rowsText.split('-');
+                n1 = parseInt(rowsList[0], 10);
+                n2 = parseInt(rowsList[1], 10);
+                rows_current = n2 - n1 + 1;
+                if (isNaN(rows_current)) {
+                    alert ('Falsche Zeilenangabe zu Seite ' + pagenumber_current + ': ' + rowsText);
+                } else {
+                    rows += rows_current;
+                };
+
                 guttenNode.textContent = fix_text(json[i][2]);
                 originalNode.textContent = fix_text(json[i][5]);
                 sourceNode.textContent = fix_text(json[i][8]);
@@ -92,7 +106,7 @@ function draw_barcode(json) {
 
         // break on final page
         if (page == pages) {
-            $('#fragment-count')[0].textContent = fragments;
+            $('#fragment-count')[0].textContent = fragments + ' Fragmente / ' + rows + ' Zeilen';
             break;
         }
     }
