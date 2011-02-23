@@ -31,7 +31,8 @@ function draw_barcode(json) {
     var fragments = 0;
     var rows = 0;
 
-    var ctx =  $('#barcode')[0].getContext('2d');
+    var canvas =  $('#barcode')[0];
+    var ctx = canvas.getContext('2d');
 
     // remove loading indicator
     $('#barcode-container')[0].removeChild($('#barcode-container > span')[0]);
@@ -55,6 +56,7 @@ function draw_barcode(json) {
                 ctx.stroke();
 
                 var rowNode = document.createElement('tr');
+                rowNode.className = 'page' + pagenumber_current;
 
                 var pageNode = document.createElement('td');
                 var pageRowsNode = document.createElement('td');
@@ -110,6 +112,18 @@ function draw_barcode(json) {
             break;
         }
     }
+
+    canvas.addEventListener(
+        'click', 
+        function(e) {
+            // quick hack, needs to be changed if number of canvas parent elements changes
+            var posx = e.pageX - this.offsetLeft - this.parentNode.offsetLeft;
+            var css = '#fragments > tr {display: none;} #fragments > tr.page' + posx + ' {display: table-row;}';
+            $('#style')[0].textContent = css;
+        },
+        false
+    );
+
 }
 
 function fix_text(text) {
