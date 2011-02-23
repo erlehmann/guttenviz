@@ -161,5 +161,6 @@ function fix_text(text) {
     text = text.replace(/&#13;&#10;/g, ' ');
     text = text.replace(/&#039;/g, "'");
     text = text.replace(/&quot;/g, '"');
+    text = text.replace(/&#9;/g, '    ');
     return text;
 }
