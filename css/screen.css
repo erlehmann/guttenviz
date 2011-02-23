@@ -78,6 +78,10 @@ table,
     position: relative;
 }
 
+#notice {
+    font-weight: bold;
+}
+
 #fragment-count {
     display:inline-block;
     font-size: 80px;
@@ -86,7 +90,12 @@ table,
     padding: 0 20px;
 }
 
+#barcode-legend-container {
+    margin-bottom: 8px;
+}
+
 #barcode-container {
+    display: inline-block;
     width: 475px;
 }
 
@@ -106,4 +115,25 @@ table,
 
 #errors {
     white-space: pre;
+}
+
+#legend {
+    display: inline-block;
+    margin-left: 20px;
+    text-align: left;
+}
+
+.legend-plagiarism, .legend-no-plagiarism {
+    border: 1px solid black;
+    display: inline-block;
+    height: 18px;
+    width: 18px;
+}
+
+.legend-plagiarism {
+    background-color: black;
+}
+
+.legend-no-plagiarism {
+    background-color: white;
 }

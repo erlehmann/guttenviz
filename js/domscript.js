@@ -117,8 +117,15 @@ function draw_barcode(json) {
         'click', 
         function(e) {
             // quick hack, needs to be changed if number of canvas parent elements changes
-            var posx = e.pageX - this.offsetLeft - this.parentNode.offsetLeft;
-            var css = '#fragments > tr {display: none;} #fragments > tr.page' + posx + ' {display: table-row;}';
+            var pagenumber = e.pageX - this.offsetLeft - this.parentNode.offsetLeft - this.parentNode.parentNode.offsetLeft;
+            var fragments = $('.page' + pagenumber).length;
+            if (fragments == 1) {
+                $('#fragment-count')[0].textContent = '1 Fragment auf Seite ' + pagenumber + '.';
+            } else {
+                $('#fragment-count')[0].textContent = fragments + ' Fragmente auf Seite ' + pagenumber + '.';
+            }
+
+            var css = '#fragments > tr {display: none;} #fragments > tr.page' + pagenumber + ' {display: table-row;}';
             $('#style')[0].textContent = css;
         },
         false

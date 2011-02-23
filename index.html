@@ -11,7 +11,7 @@
   <script src="js/html5.js"></script>
   <script>document.documentElement.className += " js";</script>
 
-    <style id="style"></style>
+    <style id=style></style>
 </head>
 
 <!--[if lt IE 7]><body class="ie7 ie6"><![endif]-->
@@ -24,13 +24,24 @@
         in Karl-Theodor Freiherr zu Guttenbergs Dissertation
     </h1>
 
-    <div id=barcode-container>
-        <span>Ladend …</span>
-        <canvas id=barcode height=100 width=475>
-            Ohne Canvas nix los hier.
-        </canvas>
-        <img src="img/pagenumbers.png" alt="Seitenzahlen"/>
+    <div id=notice>
+        Klicke auf den Barcode, um nur die Fragmente auf der entsprechenden Seite zu zeigen.
     </div>
+
+    <section id=barcode-legend-container>
+        <div id=barcode-container>
+            <span>Ladend …</span>
+            <canvas id=barcode height=100 width=475>
+                Ohne Canvas nix los hier.
+            </canvas>
+            <img src="img/pagenumbers.png" alt="Seitenzahlen"/>
+        </div>
+    
+        <div id=legend>
+            <span class=legend-plagiarism> </span> Seite mit Plagiat<br/>
+            <span class=legend-no-plagiarism> </span> Seite ohne Plagiat
+        </div>
+    </section>
 
     <hr/>
 
