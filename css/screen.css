@@ -91,7 +91,9 @@ table,
 }
 
 #barcode-legend-container {
+    display: inline-block;
     margin-bottom: 8px;
+    position: relative;
 }
 
 #barcode-container {
@@ -113,13 +115,27 @@ table,
     display: block;
 }
 
+#tooltip {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    display: block;
+    font-size: 40px;
+    left: 200px;
+    padding: 0 10px;
+    position: absolute;
+    top: -30px;
+    visibility: hidden;
+    width: 60px;
+}
+
 #errors {
     white-space: pre;
 }
 
 #legend {
     display: inline-block;
-    margin-left: 20px;
+    margin-left: 10px;
     text-align: left;
 }
 
@@ -128,6 +144,7 @@ table,
     display: inline-block;
     height: 18px;
     width: 18px;
+    margin-right: 5px;
 }
 
 .legend-plagiarism {

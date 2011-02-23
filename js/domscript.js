@@ -131,6 +131,30 @@ function draw_barcode(json) {
         false
     );
 
+    canvas.addEventListener(
+        'mousemove',
+        function(e) {
+            var pagenumber = e.pageX - this.offsetLeft - this.parentNode.offsetLeft - this.parentNode.parentNode.offsetLeft;
+            $('#tooltip')[0].textContent = pagenumber;
+        },
+        false
+    );
+
+    canvas.addEventListener(
+        'mouseover',
+        function(e) {
+            $('#tooltip')[0].style.visibility = 'visible'
+        },
+        false
+    );
+
+    canvas.addEventListener(
+        'mouseout',
+        function(e) {
+            $('#tooltip')[0].style.visibility = 'hidden';
+        },
+        false
+    );
 }
 
 function fix_text(text) {
