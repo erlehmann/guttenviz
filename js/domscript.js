@@ -74,7 +74,13 @@ function draw_barcode(json) {
                 var rowsList = rowsText.split('-');
                 n1 = parseInt(rowsList[0], 10);
                 n2 = parseInt(rowsList[1], 10);
-                rows_current = n2 - n1 + 1;
+
+                if (typeof rowsList[1] == typeof undefined) {
+                    rows_current = 1;
+                } else {
+                    rows_current = n2 - n1 + 1;
+                };
+
                 if (isNaN(rows_current)) {
                     $('#errors')[0].textContent += 'Nicht auswertbare Zeilenangabe zu Seite ' + pagenumber_current + ': „' + rowsText + '“\n';
                 } else {
