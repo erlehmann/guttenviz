@@ -115,6 +115,10 @@ table,
     display: block;
 }
 
+#barcode-container > canvas {
+    cursor: crosshair;
+}
+
 #tooltip {
     background-color: white;
     border: 1px solid black;

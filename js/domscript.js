@@ -37,8 +37,8 @@ function draw_barcode(json) {
     // remove loading indicator
     $('#barcode-container')[0].removeChild($('#barcode-container > span')[0]);
 
-    // damn antialiasing
-    ctx.translate(0.5, 0.5);
+    // fucking coordinates, how do they work?
+    ctx.translate(-0.5, 0.5);
 
     // background
     ctx.fillStyle = '#ffffff';
@@ -125,8 +125,7 @@ function draw_barcode(json) {
     canvas.addEventListener(
         'click', 
         function(e) {
-            // quick hack, needs to be changed if number of canvas parent elements changes
-            var pagenumber = e.pageX - this.offsetLeft - this.parentNode.offsetLeft - this.parentNode.parentNode.offsetLeft;
+            var pagenumber = get_pagenumber(this, e);
             var fragments = $('.page' + pagenumber).length;
             if (fragments == 1) {
                 $('#fragment-count')[0].textContent = '1 Fragment auf Seite ' + pagenumber + '.';
@@ -143,7 +142,7 @@ function draw_barcode(json) {
     canvas.addEventListener(
         'mousemove',
         function(e) {
-            var pagenumber = e.pageX - this.offsetLeft - this.parentNode.offsetLeft - this.parentNode.parentNode.offsetLeft;
+            var pagenumber = get_pagenumber(this, e);
             $('#tooltip')[0].textContent = pagenumber;
         },
         false
@@ -172,4 +171,9 @@ function fix_text(text) {
     text = text.replace(/&quot;/g, '"');
     text = text.replace(/&#9;/g, '    ');
     return text;
+}
+
+function get_pagenumber(that, event) {
+    // quick hack, needs to be changed if number of canvas parent elements changes
+    return event.pageX - that.offsetLeft - that.parentNode.offsetLeft - that.parentNode.parentNode.offsetLeft -1;
 }
