@@ -37,6 +37,9 @@ function draw_barcode(json) {
     // remove loading indicator
     $('#barcode-container')[0].removeChild($('#barcode-container > span')[0]);
 
+    // damn antialiasing
+    ctx.translate(0.5, 0.5);
+
     // background
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, pages, height);
