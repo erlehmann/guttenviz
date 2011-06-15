@@ -25,7 +25,7 @@ foreach($fragments as $f) {
 		$first = true;
 		for($i = 1; $i < 12; $i++) { 
 			if(!$first)
-				$ret .= ',';
+				$ret .= ', ';
 			else
 				$first = false;
 			$ret .= quoteForCSV($f[$i]);
