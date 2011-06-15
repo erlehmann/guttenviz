@@ -1,3 +1,7 @@
 Diese Software generiert eine grafische Darstellung der im GuttenPlag Wiki identifizierten Fragmente in Karl-Theodor Freiherr zu Guttenbergs Dissertation mit Hilfe der zur Verfügung stehenden API.
 
-Lizenz: Macht, was ihr wollt – aber behauptet nicht, ihr hättet das alles geschrieben (höhö höhöhö).
+Die CSV-Datei lässt sich mit folgendem Kommando (re-)generieren „php -f ./createCSV.php > guttenplag.csv“. Keine Panik, es dauert ein bisschen.
+
+Lizenz für HTML, Javascript, CSS: Macht, was ihr wollt – aber behauptet nicht, ihr hättet das alles geschrieben (höhö höhöhö).
+
+Lizenz für PHP: Weiß nicht. Fragt fiesh, er hat den guttenberg-report-builder geschrieben, zu finden unter <https://github.com/fiesh/guttenberg-report-builder/>.

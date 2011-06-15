@@ -7,7 +7,7 @@ function dom_init() {
   });
 
     var req = new XMLHttpRequest();
-    var url = 'http://gut.greasingwheels.org/csv/csv';
+    var url = 'guttenplag.csv';
     req.open('GET', url, true);
     req.onreadystatechange = function(e) {
         if (req.readyState == 4) {  
