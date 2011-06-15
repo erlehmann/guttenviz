@@ -13,7 +13,10 @@ function quoteForCSV($s) {
 }
 
 function replaceCategoryLinks($s) {
-	return preg_replace('/\[\[:Kategorie:([^\]\|]+)(\|[^\]]*)?\]\]/', 'http://de.guttenplag.wikia.com/wiki/Kategorie:$1', $s);
+	// FIXME: other characters that should not occur in URLs are not replaced
+	$s = str_replace(' ', '%20', $s);
+	$s = preg_replace('/\[\[:Kategorie:([^\]\|]+)(\|[^\]]*)?\]\]/', 'http://de.guttenplag.wikia.com/wiki/Kategorie:$1', $s);
+	return $s;
 }
 
 $ret = '';

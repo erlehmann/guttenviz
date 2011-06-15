@@ -10,7 +10,7 @@ function dom_init() {
     var url = 'guttenplag.csv';
     req.open('GET', url, true);
     req.onreadystatechange = function(e) {
-        if (req.readyState == 4) {  
+        if (req.readyState == 4) {
             if(req.status == 200) {
                 var json = CSVToArray(req.responseText, ', ');
 
@@ -67,8 +67,6 @@ function draw_barcode(json) {
                 var originalNode = document.createElement('td');
                 var sourceNode = document.createElement('td');
 
-                var urlNode = document.createElement('td');
-
                 pageNode.textContent = pagenumber_current;
 
                 var rowsText = fix_text(json[i][1])
@@ -92,15 +90,17 @@ function draw_barcode(json) {
 
                 guttenNode.textContent = fix_text(json[i][2]);
                 originalNode.textContent = fix_text(json[i][5]);
-                sourceNode.textContent = fix_text(json[i][8]);
+
 
                 if (json[i][9] != '') {
                     var aNode = document.createElement('a');
 
                     aNode.href = fix_text(json[i][9]);
-                    aNode.textContent = aNode.href;
+                    aNode.textContent = fix_text(json[i][8]);
 
-                    urlNode.appendChild(aNode);
+                    sourceNode.appendChild(aNode);
+                } else {
+                    sourceNode.textContent = fix_text(json[i][8]);
                 }
 
                 rowNode.appendChild(pageNode);
@@ -108,8 +108,6 @@ function draw_barcode(json) {
                 rowNode.appendChild(guttenNode);
                 rowNode.appendChild(originalNode);
                 rowNode.appendChild(sourceNode);
-
-                rowNode.appendChild(urlNode);
 
                 $('#fragments')[0].appendChild(rowNode)
             }
@@ -123,7 +121,7 @@ function draw_barcode(json) {
     }
 
     canvas.addEventListener(
-        'click', 
+        'click',
         function(e) {
             var pagenumber = get_pagenumber(this, e);
             var fragments = $('.page' + pagenumber).length;
