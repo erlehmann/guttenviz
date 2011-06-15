@@ -12,7 +12,7 @@ function dom_init() {
     req.onreadystatechange = function(e) {
         if (req.readyState == 4) {  
             if(req.status == 200) {
-                var json = CSVToArray(req.responseText);
+                var json = CSVToArray(req.responseText, ', ');
 
                 json.splice(0, 1);  // remove first CSV element (headings)
                 draw_barcode(json);
