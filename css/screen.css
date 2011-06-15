@@ -55,6 +55,12 @@ hr {
     width: 0px;
 }
 
+table {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+}
+
 table > thead > tr > td {
     text-align: center;
 }
