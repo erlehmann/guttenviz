@@ -91,8 +91,8 @@ function draw_barcode(json) {
                 guttenNode.textContent = fix_text(json[i][2]);
                 originalNode.textContent = fix_text(json[i][5]);
 
-
-                if (json[i][9] != '') {
+                // FIXME: testing if json[i][9] is a URL would be better
+                if (typeof json[i][9] == 'string') {
                     var aNode = document.createElement('a');
 
                     aNode.href = fix_text(json[i][9]);
