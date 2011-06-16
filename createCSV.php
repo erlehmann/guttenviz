@@ -7,7 +7,7 @@ require_once('FragmentLoader.php');
 function quoteForCSV($s) {
 	$s = htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
 	$s = str_replace(array("\n", "\r"), array('&#10;', '&#13;'), $s);
-	if (strpos($s, ',') !== false)
+	if (is_numeric($s) === false)
 		$s = '"'.$s.'"';
 	return $s;
 }
